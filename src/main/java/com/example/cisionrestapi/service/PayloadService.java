@@ -38,24 +38,27 @@ public class PayloadService {
 
         int maxLength = 1,start=0;
         int low, high;
-        for(int i = 0; i < n; i++){
-            low = i - 1;
-            high = i + 1;
-            while(high < n && content.charAt(high) == content.charAt(i))
-                high++;
+        for(int i = 0; i < n; i++) {
+            if ((content.charAt(i) >= 'a' && content.charAt(i) <= 'z')
+                    || (content.charAt(i) >= 'A' && content.charAt(i) <= 'Z')) {
+                low = i - 1;
+                high = i + 1;
+                while (high < n && content.charAt(high) == content.charAt(i))
+                    high++;
 
-            while(low >= 0 && content.charAt(low) == content.charAt(i))
-                low--;
+                while (low >= 0 && content.charAt(low) == content.charAt(i))
+                    low--;
 
-            while(low >= 0 && high < n && content.charAt(low) == content.charAt(high)){
-                low--;
-                high++;
-            }
+                while (low >= 0 && high < n && content.charAt(low) == content.charAt(high)) {
+                    low--;
+                    high++;
+                }
 
-            int length = high - low - 1;
-            if(maxLength < length){
-                maxLength = length;
-                start=low+1;
+                int length = high - low - 1;
+                if (maxLength < length) {
+                    maxLength = length;
+                    start = low + 1;
+                }
             }
         }
         return maxLength;
