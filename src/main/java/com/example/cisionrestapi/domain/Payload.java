@@ -18,7 +18,7 @@ public class Payload {
     private int longestPalindromeSize;
 
     public boolean isValid(){
-        return this.content.length() > 0 && this.timestamp.length() > 0;
+        return this.content != null && this.timestamp != null && this.content.length() > 0 && this.timestamp.length() > 0;
     }
 
     public Payload(){}

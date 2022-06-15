@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,12 +25,13 @@ public class CisionRestApiApplication {
     CommandLineRunner runner(PayloadService payloadService){
         return args -> {
             ObjectMapper mapper = new ObjectMapper();
-            TypeReference<List<Payload>> typeReference = new TypeReference<List<Payload>>(){};
+            TypeReference<List<Payload>> typeReference = new TypeReference<>(){};
             InputStream inputStream = TypeReference.class.getResourceAsStream("/json/payload.json");
-
             try{
-                List<Payload> payloadList = mapper.readValue(inputStream,typeReference);
-                List<Payload> validList = payloadList.stream().filter(Payload::isValid).collect(Collectors.toList());
+                List<Payload> validList = mapper.readValue(inputStream,typeReference)
+                        .stream()
+                        .filter(Payload::isValid)
+                        .collect(Collectors.toList());
                 payloadService.save(validList);
                 System.out.println("Data Saved to database!");
             } catch (IOException e){

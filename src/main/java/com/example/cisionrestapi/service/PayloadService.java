@@ -2,7 +2,6 @@ package com.example.cisionrestapi.service;
 
 import com.example.cisionrestapi.domain.Payload;
 import com.example.cisionrestapi.repository.PayloadRepository;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
