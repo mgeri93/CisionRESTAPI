@@ -1,9 +1,11 @@
 package com.example.cisionrestapi.service;
 
 import com.example.cisionrestapi.domain.Payload;
+import com.example.cisionrestapi.domain.PayloadDTO;
 import com.example.cisionrestapi.repository.PayloadRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,8 +17,14 @@ public class PayloadService {
         this.payloadRepository = payloadRepository;
     }
 
-    public Iterable<Payload> list() {
-        return payloadRepository.findAll();
+    public Iterable<PayloadDTO> list(){
+        List<PayloadDTO> payloadDTOS = new ArrayList<>();
+        for(Payload payload : payloadRepository.findAll()){
+            payloadDTOS.add(new PayloadDTO(payload.getContent(),
+                    payload.getTimestamp(),
+                    payload.getLongestPalindromeSize()));
+        }
+        return payloadDTOS;
     }
 
     public Payload save(Payload payload){

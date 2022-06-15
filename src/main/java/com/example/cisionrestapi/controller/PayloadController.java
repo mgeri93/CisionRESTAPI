@@ -1,6 +1,6 @@
 package com.example.cisionrestapi.controller;
 
-import com.example.cisionrestapi.domain.Payload;
+import com.example.cisionrestapi.domain.PayloadDTO;
 import com.example.cisionrestapi.service.PayloadService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class PayloadController {
     }
 
     @GetMapping("/list")
-    public Iterable<Payload> list(){
+    public Iterable<PayloadDTO> list(){
         return payloadService.list();
     }
 
