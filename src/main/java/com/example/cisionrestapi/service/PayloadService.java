@@ -39,8 +39,7 @@ public class PayloadService {
         int maxLength = 1,start=0;
         int low, high;
         for(int i = 0; i < n; i++) {
-            if ((content.charAt(i) >= 'a' && content.charAt(i) <= 'z')
-                    || (content.charAt(i) >= 'A' && content.charAt(i) <= 'Z')) {
+            if (!Character.isDigit(content.charAt(i))) {
                 low = i - 1;
                 high = i + 1;
                 while (high < n && content.charAt(high) == content.charAt(i))
