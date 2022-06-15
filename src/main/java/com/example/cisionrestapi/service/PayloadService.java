@@ -2,6 +2,7 @@ package com.example.cisionrestapi.service;
 
 import com.example.cisionrestapi.domain.Payload;
 import com.example.cisionrestapi.repository.PayloadRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class PayloadService {
 
     public Iterable<Payload> save(List<Payload> payloadList){
         for(Payload payload : payloadList){
-            payload.setLongestPalindromeSize(longestPalSize(payload.getContent()));
+                payload.setLongestPalindromeSize(longestPalSize(payload.getContent()));
         }
         return payloadRepository.saveAll(payloadList);
     }
@@ -62,6 +63,5 @@ public class PayloadService {
         }
         return maxLength;
     }
-
 
 }

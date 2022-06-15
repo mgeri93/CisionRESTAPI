@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class CisionRestApiApplication {
@@ -26,9 +28,11 @@ public class CisionRestApiApplication {
             ObjectMapper mapper = new ObjectMapper();
             TypeReference<List<Payload>> typeReference = new TypeReference<List<Payload>>(){};
             InputStream inputStream = TypeReference.class.getResourceAsStream("/json/payload.json");
+
             try{
                 List<Payload> payloadList = mapper.readValue(inputStream,typeReference);
-                payloadService.save(payloadList);
+                List<Payload> validList = payloadList.stream().filter(Payload::isValid).collect(Collectors.toList());
+                payloadService.save(validList);
                 System.out.println("Data Saved to database!");
             } catch (IOException e){
                 System.out.println("Unable to save data: " + e.getMessage());
