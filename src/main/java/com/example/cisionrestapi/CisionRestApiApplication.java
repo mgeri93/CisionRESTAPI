@@ -2,7 +2,7 @@ package com.example.cisionrestapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.example.cisionrestapi.domain.Payload;
-import com.example.cisionrestapi.service.PayloadService;
+import com.example.cisionrestapi.service.PayloadServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +22,7 @@ public class CisionRestApiApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PayloadService payloadService){
+    CommandLineRunner runner(PayloadServiceImpl payloadServiceImpl){
         return args -> {
             ObjectMapper mapper = new ObjectMapper();
             TypeReference<List<Payload>> typeReference = new TypeReference<>(){};
@@ -32,7 +32,7 @@ public class CisionRestApiApplication {
                         .stream()
                         .filter(Payload::isValid)
                         .collect(Collectors.toList());
-                payloadService.save(validList);
+                payloadServiceImpl.save(validList);
                 System.out.println("Data Saved to database!");
             } catch (IOException e){
                 System.out.println("Unable to save data: " + e.getMessage());

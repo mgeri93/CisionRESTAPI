@@ -1,5 +1,6 @@
 package com.example.cisionrestapi.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class Payload {
 
     @Id
@@ -18,8 +20,10 @@ public class Payload {
     private int longestPalindromeSize;
 
     public boolean isValid(){
-        return this.content != null && this.timestamp != null && this.content.length() > 0 && this.timestamp.length() > 0;
+        return this.content != null && this.timestamp != null
+                && this.content.length() > 0 && this.timestamp.length() > 0;
     }
 
     public Payload(){}
+
 }
