@@ -27,7 +27,8 @@
 	src/main/java/com/example/cisionrestapi/CisionRestApiApplication.java
 ### Checking results
 	After entering the JSON contents and booting up our application,
-	we can check the result on the "http://localhost:8080/list" endpoint in our browser or with an API Tool i.e.: Postman.
+	we can check the result on the "http://localhost:8080/list" endpoint 
+	in our browser or with an API Tool i.e.: Postman.
 	
 	
 
